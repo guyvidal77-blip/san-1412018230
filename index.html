@@ -47,9 +47,10 @@
   /* header */
   header{text-align:center;margin-bottom:34px;animation:rise .9s ease both}
   .kicker{font-family:'Heebo';font-weight:500;letter-spacing:.18em;color:var(--rose-deep);font-size:14px;text-transform:uppercase;opacity:.85}
-  h1{font-family:'Suez One',serif;font-size:clamp(36px,7.5vw,72px);line-height:1.25;margin:8px 0 12px;padding:.08em .1em;
+  h1{font-family:'Suez One',serif;font-size:clamp(30px,6.4vw,72px);line-height:1.25;margin:8px 0 12px;padding:.08em .12em;
      background:linear-gradient(120deg,var(--rose-deep),var(--rose) 50%,var(--gold));
-     -webkit-background-clip:text;background-clip:text;color:transparent}
+     -webkit-background-clip:text;background-clip:text;color:transparent;
+     overflow-wrap:break-word;text-wrap:balance}
   .sub{font-family:'Frank Ruhl Libre',serif;font-size:clamp(17px,2.6vw,22px);color:var(--ink-soft);font-weight:500}
   .sub b{color:var(--rose-deep)}
 
@@ -166,6 +167,8 @@
   @media (max-width:520px){
     .unit{min-width:43%}
     .num{font-size:46px}
+    h1{font-size:30px}
+    .wrap{padding-left:14px;padding-right:14px}
   }
   @media (prefers-reduced-motion:reduce){
     .heart{display:none}
