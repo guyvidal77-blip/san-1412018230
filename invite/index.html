@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>כרטיס עלייה למטוס · סאן ✈️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700;800&family=Suez+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose-deep:#c2185b;--rose:#e8638f;--rose-soft:#f7a8c4;--blush:#fde4ec;
+    --cream:#fff7f2;--gold:#d9a441;--gold-light:#f0cd86;--ink:#5b2740;--ink-soft:#9a6a82;
+    --line:#f0c9d8;--shadow:rgba(194,24,91,.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  body{
+    font-family:'Heebo',sans-serif;color:var(--ink);min-height:100vh;
+    background:
+      radial-gradient(900px 600px at 85% -5%, #ffd9e6 0%, transparent 55%),
+      radial-gradient(800px 600px at -5% 105%, #ffe9d6 0%, transparent 55%),
+      linear-gradient(160deg,#fff7f2 0%,#fde4ec 50%,#fbd3e2 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:34px 16px;position:relative;overflow-x:hidden;
+  }
+  /* flying planes / hearts bg */
+  .sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .fly{position:absolute;font-size:26px;opacity:0;animation:cross linear infinite;filter:drop-shadow(0 6px 10px var(--shadow))}
+  @keyframes cross{
+    0%{transform:translateX(60px) translateY(0) rotate(8deg);opacity:0}
+    10%{opacity:.9}
+    90%{opacity:.7}
+    100%{transform:translateX(-110vw) translateY(-30px) rotate(8deg);opacity:0}
+  }
+
+  .lead{text-align:center;z-index:2;margin-bottom:18px;animation:rise .8s ease both}
+  .lead .tag{display:inline-block;background:var(--rose-deep);color:#fff;font-weight:700;font-size:13px;letter-spacing:.14em;padding:6px 16px;border-radius:30px;box-shadow:0 10px 22px -10px var(--shadow)}
+  .lead h1{font-family:'Suez One',serif;font-size:clamp(26px,5.5vw,42px);margin-top:12px;line-height:1.25;padding:.05em .1em;
+    background:linear-gradient(120deg,var(--rose-deep),var(--rose) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead p{color:var(--ink-soft);font-family:'Frank Ruhl Libre',serif;font-size:17px;margin-top:4px}
+
+  /* ===== boarding pass ===== */
+  .ticket{
+    z-index:2;width:min(720px,100%);
+    display:flex;background:#fff;border-radius:26px;overflow:hidden;
+    box-shadow:0 40px 80px -30px var(--shadow), 0 6px 0 rgba(255,255,255,.6) inset;
+    border:1px solid #ffe1ec;animation:rise 1s .1s ease both;
+  }
+  .main{flex:1;padding:26px 26px 22px;position:relative;background:
+    linear-gradient(180deg,#fff 0%,#fff7fa 100%)}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px dashed var(--line);padding-bottom:16px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .logo{font-size:30px}
+  .brand .name{font-family:'Suez One',serif;font-size:22px;color:var(--rose-deep);line-height:1}
+  .brand .slogan{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .passtitle{text-align:left}
+  .passtitle b{display:block;font-family:'Heebo';font-weight:800;letter-spacing:.12em;color:var(--ink);font-size:13px}
+  .passtitle small{color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.2em}
+
+  .route{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0 20px}
+  .node{text-align:center;min-width:0}
+  .node .code{font-family:'Suez One',serif;font-size:clamp(26px,7vw,40px);color:var(--rose-deep);line-height:1}
+  .node .place{font-size:13px;color:var(--ink-soft);margin-top:4px;font-weight:500}
+  .path{flex:1;display:flex;align-items:center;justify-content:center;color:var(--rose-soft);position:relative;min-width:50px}
+  .path .dots{flex:1;height:0;border-top:2px dotted var(--rose-soft)}
+  .path .plane{font-size:22px;margin:0 6px;animation:bob 2.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 10px}
+  .f{min-width:0}
+  .f .k{font-size:11px;letter-spacing:.08em;color:var(--ink-soft);font-weight:600;text-transform:uppercase}
+  .f .v{font-family:'Frank Ruhl Libre',serif;font-weight:700;color:var(--ink);font-size:clamp(15px,2.4vw,18px);margin-top:3px;line-height:1.2}
+  .f .v .em{color:var(--rose-deep)}
+
+  .status{margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#e9f9ee,#d8f5e2);color:#1c7a45;font-weight:700;font-size:14px;padding:8px 16px;border-radius:30px;border:1px solid #b9ecca}
+
+  .fine{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+  .fine .h{font-size:11px;letter-spacing:.1em;color:var(--ink-soft);font-weight:700;margin-bottom:6px}
+  .fine ul{list-style:none;display:grid;gap:5px}
+  .fine li{font-size:12.5px;color:var(--ink-soft);line-height:1.45;padding-right:16px;position:relative}
+  .fine li::before{content:"✶";position:absolute;right:0;color:var(--gold)}
+
+  /* stub */
+  .stub{
+    width:172px;flex-shrink:0;background:
+      repeating-linear-gradient(180deg,rgba(255,255,255,.10) 0 13px,rgba(255,255,255,0) 13px 15px),
+      linear-gradient(155deg,var(--rose) 0%,var(--rose-deep) 100%);
+    color:#fff;padding:22px 16px;position:relative;display:flex;flex-direction:column;
+    border-right:2px dashed rgba(255,255,255,.7);
+  }
+  .stub::before,.stub::after{content:"";position:absolute;right:-13px;width:26px;height:26px;border-radius:50%;background:var(--blush)}
+  .stub::before{top:-13px}.stub::after{bottom:-13px}
+  .stub .sname{font-family:'Suez One',serif;font-size:18px;line-height:1}
+  .stub .ssub{font-size:11px;opacity:.9;margin:2px 0 16px}
+  .stub .srow{margin-bottom:12px}
+  .stub .srow .k{font-size:10px;letter-spacing:.08em;opacity:.85;text-transform:uppercase}
+  .stub .srow .v{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:17px;margin-top:2px}
+  .stub .barcode{margin-top:auto;height:46px;border-radius:6px;background:
+    repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 4px,#fff 4px 5px,transparent 5px 9px,#fff 9px 12px,transparent 12px 13px);
+    opacity:.95}
+  .stub .bc-label{text-align:center;font-size:10px;letter-spacing:.3em;opacity:.85;margin-top:6px}
+
+  /* boarding countdown */
+  .board{z-index:2;margin-top:20px;text-align:center;background:rgba(255,255,255,.6);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.8);border-radius:20px;padding:16px 24px;box-shadow:0 20px 44px -28px var(--shadow);animation:rise .9s .2s ease both}
+  .board .lbl{font-size:13px;color:var(--ink-soft);font-weight:500}
+  .board .clk{font-family:'Suez One',serif;font-size:clamp(24px,6vw,34px);color:var(--rose-deep);font-variant-numeric:tabular-nums;margin-top:4px;direction:ltr}
+  .board .note{font-size:12px;color:var(--ink-soft);margin-top:4px}
+
+  footer{z-index:2;margin-top:18px;text-align:center;color:var(--ink-soft);font-family:'Frank Ruhl Libre',serif;font-size:16px}
+  footer b{color:var(--rose-deep)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+  @media (max-width:600px){
+    .ticket{flex-direction:column}
+    .stub{width:100%;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 18px;border-right:none;border-top:2px dashed rgba(255,255,255,.7);padding:18px 18px}
+    .stub::before{top:-13px;right:auto;left:-13px}
+    .stub::after{bottom:auto;top:-13px;right:-13px}
+    .stub .barcode{width:100%;order:5;margin-top:6px}
+    .stub .bc-label{width:100%;order:6}
+    .grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){.fly{display:none}*{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky"></div>
+
+<div class="lead">
+  <span class="tag">הזמנה רשמית · הערב</span>
+  <h1>סאן, יש לך טיסה הערב ✈️</h1>
+  <p>נא להציג כרטיס זה בכניסה לממ״ד</p>
+</div>
+
+<div class="ticket">
+  <div class="main">
+    <div class="brandbar">
+      <div class="brand">
+        <span class="logo">💗✈️</span>
+        <div>
+          <div class="name">אל-גיא</div>
+          <div class="slogan">הדרך הכי קצרה אלייך · Love Airlines</div>
+        </div>
+      </div>
+      <div class="passtitle">
+        <b>כרטיס עלייה למטוס</b>
+        <small>BOARDING PASS</small>
+      </div>
+    </div>
+
+    <div class="route">
+      <div class="node"><div class="code">שגרה</div><div class="place">היומיום האפור</div></div>
+      <div class="path"><span class="dots"></span><span class="plane">🛫</span><span class="dots"></span></div>
+      <div class="node"><div class="code">ממ״ד</div><div class="place">היעד הכי חם בעולם</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="f"><div class="k">נוסעת</div><div class="v"><span class="em">סאן</span> 👑</div></div>
+      <div class="f"><div class="k">טיסה</div><div class="v">GV&nbsp;2030</div></div>
+      <div class="f"><div class="k">שער</div><div class="v">❤️ הלב</div></div>
+      <div class="f"><div class="k">מושב</div><div class="v">1A · צמוד לגיא</div></div>
+      <div class="f"><div class="k">עלייה למטוס</div><div class="v"><span class="em">20:30</span></div></div>
+      <div class="f"><div class="k">תאריך</div><div class="v">הערב 💫</div></div>
+      <div class="f"><div class="k">מחלקה</div><div class="v">ראשונה+</div></div>
+      <div class="f"><div class="k">משך הטיסה</div><div class="v">עד הבוקר 😏</div></div>
+    </div>
+
+    <div class="status">✓ הטיסה אושרה · הקברניט כבר מחמם מנועים</div>
+
+    <div class="fine">
+      <div class="h">תקנון טיסה (קראי בעיון, או שלא 😜)</div>
+      <ul>
+        <li>הטיסה אינה ניתנת לביטול, דחייה, או "אני עייפה". זה כתוב קטן, אבל זה מחייב.</li>
+        <li>מטען יד מותר: חיוך אחד. מטען עודף: נשיקות - ללא הגבלת משקל.</li>
+        <li>ייתכנו מהמורות קלות. גיא אינו אחראי למתיחות שיתבצעו במהלך הטיסה.</li>
+        <li>חגורת בטיחות: מומלצת בהמראה. אחר כך - לפי שיקול דעת הקברניט. 😉</li>
+        <li>נא להגיע 0 דקות לפני המראה. באמת שאי אפשר לחכות.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stub">
+    <div class="sname">סאן</div>
+    <div class="ssub">נוסעת VIP מאוד מאוד מאוד</div>
+    <div class="srow"><div class="k">טיסה</div><div class="v">GV 2030</div></div>
+    <div class="srow"><div class="k">עלייה</div><div class="v">20:30</div></div>
+    <div class="srow"><div class="k">מושב</div><div class="v">1A</div></div>
+    <div class="barcode"></div>
+    <div class="bc-label">★ ONLY · YOU ★</div>
+  </div>
+</div>
+
+<div class="board">
+  <div class="lbl">ההמראה בעוד</div>
+  <div class="clk" id="clk">--:--:--</div>
+  <div class="note" id="note">מתחממים מנועים...</div>
+</div>
+
+<footer>הטיסה באדיבות <b>גיא</b> · נא לטוס באהבה 💗</footer>
+
+<script>
+/* flying planes/hearts */
+(function(){
+  const sky=document.getElementById('sky');
+  const g=['✈️','💗','🛩️','💕','🤍'];
+  for(let i=0;i<14;i++){
+    const e=document.createElement('div');
+    e.className='fly';e.textContent=g[i%g.length];
+    e.style.top=(Math.random()*92)+'%';
+    e.style.fontSize=(18+Math.random()*22)+'px';
+    e.style.animationDuration=(11+Math.random()*12)+'s';
+    e.style.animationDelay=(-Math.random()*18)+'s';
+    sky.appendChild(e);
+  }
+})();
+
+/* boarding countdown to today 20:30 */
+const BOARD=new Date(2026,5,22,20,30,0,0).getTime();
+function pad(n){return String(n).padStart(2,'0')}
+function clk(){
+  let diff=BOARD-Date.now();
+  const c=document.getElementById('clk'),n=document.getElementById('note');
+  if(diff<=0){c.textContent="עכשיו! 🛫";n.textContent="הקברניט גיא מחכה לך. בואי כבר 💕";return;}
+  const h=Math.floor(diff/3600000);diff-=h*3600000;
+  const m=Math.floor(diff/60000);diff-=m*60000;
+  const s=Math.floor(diff/1000);
+  c.textContent=pad(h)+':'+pad(m)+':'+pad(s);
+  n.textContent = (h<1)? 'תכף ממריאים! לתפוס מקום ליד החלון 😍' : 'הספירה החלה. תארזי חיוך.';
+}
+clk();setInterval(clk,1000);
+</script>
+</body>
+</html>
